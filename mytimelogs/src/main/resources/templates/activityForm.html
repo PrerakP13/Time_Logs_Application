@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Activity Tracker</title>
+    <script>
+        setInterval(function() {
+            let activityType = prompt("What are you doing?");
+            if (activityType) {
+                fetch('/api/activities', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ activityType: activityType })
+                });
+            }
+        }, 3600000); // 1 hour in milliseconds
+    </script>
+</head>
+<body>
+<h1>Activity Tracker</h1>
+</body>
+</html>

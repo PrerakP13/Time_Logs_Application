@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Activity Summary</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h1>Activity Summary</h1>
+<canvas id="activityChart"></canvas>
+<script>
+    fetch('/api/activities/summary')
+        .then(response => response.json())
+        .then(data => {
+            let labels = Object.keys(data);
+            let counts = Object.values(data);
+
+            new Chart(document.getElementById("activityChart"), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Activity Count',
+                        data: counts,
+                    }]
+                }
+            });
+        });
+</script>
+</body>
+</html>

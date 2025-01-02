@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Report List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>Weekly Activity Reports</h1>
+<table>
+    <thead>
+    <tr>
+        <th>File Name</th>
+        <th>Download</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="report : ${reports}">
+        <td th:text="${report.name}">Report File Name</td>
+        <td>
+            <a th:href="@{/download(filename=${report.name})}">
+                <button>Download</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
